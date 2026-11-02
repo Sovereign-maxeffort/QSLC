@@ -10,8 +10,8 @@ function Add-Result([string]$Name, [string]$Value) {
     $report.Add($line)
     Write-Host $line
 }
-Write-Host "\`nQSLC OFFLINE / LOCAL READ-ONLY AUDIT" -ForegroundColor Cyan
-Write-Host "No installs, upgrades, deployments, file moves, or deletions will be performed.\`n"
+Write-Host "`nQSLC OFFLINE / LOCAL READ-ONLY AUDIT" -ForegroundColor Cyan
+Write-Host "No installs, upgrades, deployments, file moves, or deletions will be performed.`n"
 Add-Result "Audit timestamp" (Get-Date -Format "yyyy-MM-dd HH:mm:ss K")
 Add-Result "Running PowerShell" $PSVersionTable.PSVersion.ToString()
 Add-Result "Operating system" ([System.Runtime.InteropServices.RuntimeInformation]::OSDescription)
@@ -94,5 +94,5 @@ for name in ("qslc_dashboard_app.py", "qsls_dashboard_app.py", "streamlit_app.py
 }
 $reportPath = Join-Path $env:TEMP ("QSLC-Offline-Audit-" + (Get-Date -Format "yyyyMMdd-HHmmss") + ".txt")
 $report | Set-Content -LiteralPath $reportPath -Encoding UTF8
-Write-Host "\`nAudit summary saved to: $reportPath" -ForegroundColor Green
+Write-Host "`nAudit summary saved to: $reportPath" -ForegroundColor Green
 Write-Host "Review all results before changing launch targets or archiving files."
