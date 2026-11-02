@@ -64,6 +64,14 @@ No files have been moved or deleted by this audit. The two dashboard/starter fil
 
 Case-specific legal documents, identifiers, hearing details, personal information, credentials, API keys, and confidential operational records must remain in access-controlled systems such as the designated SharePoint site or approved secret stores. Do not commit those records to this public repository.
 
+## Local audit tooling
+
+- Read-only workstation audit: `scripts/Invoke-QSLCOfflineAudit.ps1`.
+- Run from PowerShell: `pwsh -NoProfile -File .\scripts\Invoke-QSLCOfflineAudit.ps1 -RepoPath "$HOME\QSLC"`.
+- Add `-RunTests` to run the existing pytest suite using locally installed packages; the script does not install, update, deploy, move, or delete anything.
+- The script reports installed PowerShell versions, local CLI versions, Git working-tree state, Python dependency availability, dashboard syntax checks, and key file timestamps.
+- A successful script run is required before declaring the local workstation/offline environment healthy. The script has not been run on the user's workstation from this connected repository session.
+
 ## Next verification gate
 
 Run the local, read-only QSLC audit on the workstation. Compare local tool versions and repository state with this baseline. Then designate one dashboard entry point, align Python versions and launch configuration, verify offline dependencies, expand tests, and only then move confirmed-unused files into the archive.
